@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Surf Shack Chame - Club de playa exclusivo en Panamá. Membresías, pasadías, piscina, comida y el mejor ambiente surf. ¡Únete a la comunidad!">
+    <title>Surf Shack Chame | Club de Playa - Panamá</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(to bottom, #0c4a6e, #075985, #0c4a6e); color: white; min-height: 100vh; }
+        .font-display { font-family: 'Poppins', sans-serif; }
+        
+        /* Navigation */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; transition: all 0.3s; }
+        nav.scrolled { background: rgba(12, 74, 110, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.5rem; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover { color: white; }
+        .btn-primary { background: #facc15; color: #0c4a6e; font-weight: 600; padding: 0.5rem 1.25rem; border-radius: 9999px; text-decoration: none; transition: all 0.3s; }
+        .btn-primary:hover { background: #fde047; transform: scale(1.05); }
+        
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 6rem 1.5rem; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom right, rgba(3, 105, 161, 0.2), transparent, rgba(250, 204, 21, 0.1)); }
+        .bg-icon-1 { position: absolute; top: 5rem; right: 2.5rem; font-size: 8rem; opacity: 0.1; animation: pulse 2s infinite; }
+        .bg-icon-2 { position: absolute; bottom: 5rem; left: 2.5rem; font-size: 7rem; opacity: 0.1; }
+        @keyframes pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.2; } }
+        .hero-content { position: relative; z-index: 10; text-align: center; max-width: 80rem; margin: 0 auto; }
+        .hero h1 { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        @media (min-width: 768px) { .hero h1 { font-size: 4.5rem; } }
+        @media (min-width: 1024px) { .hero h1 { font-size: 6rem; } }
+        .hero h1 .gradient { background: linear-gradient(to right, #fde047, #facc15); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 1.25rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-weight: 300; }
+        @media (min-width: 768px) { .hero p { font-size: 1.5rem; } }
+        .hero p .highlight { color: #fde047; font-weight: 500; }
+        .btn-group { display: flex; flex-direction: column; gap: 1rem; justify-content: center; }
+        @media (min-width: 640px) { .btn-group { flex-direction: row; } }
+        .btn-hero-primary { background: #facc15; color: #0c4a6e; font-weight: 700; padding: 1rem 2rem; border-radius: 9999px; font-size: 1.125rem; text-decoration: none; transition: all 0.3s; }
+        .btn-hero-primary:hover { background: #fde047; transform: scale(1.05); }
+        .btn-hero-secondary { border: 2px solid rgba(255,255,255,0.3); color: white; font-weight: 600; padding: 1rem 2rem; border-radius: 9999px; font-size: 1.125rem; text-decoration: none; transition: all 0.3s; }
+        .btn-hero-secondary:hover { border-color: white; transform: scale(1.05); }
+        .hero-icons { margin-top: 3rem; display: flex; justify-content: center; gap: 2rem; }
+        .hero-icon-item { text-align: center; }
+        .hero-icon-item .icon { font-size: 3rem; }
+        .hero-icon-item .label { font-size: 0.875rem; color: rgba(255,255,255,0.6); margin-top: 0.25rem; }
+        
+        /* Sections */
+        section { padding: 6rem 1.5rem; }
+        .section-container { max-width: 80rem; margin: 0 auto; }
+        .section-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 2.25rem; text-align: center; margin-bottom: 1rem; }
+        @media (min-width: 768px) { .section-title { font-size: 3rem; } }
+        .section-subtitle { color: rgba(255,255,255,0.6); text-align: center; margin-bottom: 4rem; font-size: 1.125rem; }
+        
+        /* Benefits Grid */
+        .benefits-grid { display: grid; gap: 2rem; }
+        @media (min-width: 768px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+        .benefit-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(4px); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
+        .benefit-card:hover { border-color: rgba(250, 204, 21, 0.5); transform: translateY(-0.25rem); }
+        .benefit-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .benefit-card h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .benefit-card p { color: rgba(255,255,255,0.6); }
+        
+        /* Pricing Cards */
+        .pricing-grid { display: grid; gap: 2rem; }
+        @media (min-width: 768px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } max-width: 64rem; margin: 0 auto; }
+        .pricing-card { border-radius: 1.5rem; padding: 2rem; position: relative; overflow: hidden; }
+        .pricing-card.regular { background: linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border: 1px solid rgba(255,255,255,0.2); }
+        .pricing-card.popular { background: linear-gradient(to-bottom right, rgba(250, 204, 21, 0.2), rgba(250, 204, 21, 0.1)); border: 2px solid rgba(250, 204, 21, 0.5); }
+        .popular-badge { position: absolute; top: 1rem; right: 1rem; background: #facc15; color: #0c4a6e; font-weight: 700; font-size: 0.875rem; padding: 0.25rem 0.75rem; border-radius: 9999px; }
+        .pricing-label { color: #fde047; font-weight: 600; margin-bottom: 0.5rem; }
+        .pricing-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.875rem; margin-bottom: 0.5rem; }
+        .pricing-desc { color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; }
+        .pricing-features li { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: rgba(255,255,255,0.8); }
+        .pricing-features li .check { color: #facc15; }
+        .pricing-divider { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
+        .btn-card { width: 100%; padding: 0.75rem; border-radius: 0.75rem; font-weight: 600; text-align: center; text-decoration: none; display: block; transition: all 0.3s; cursor: pointer; border: none; font-size: 1rem; }
+        .btn-card-regular { background: rgba(255,255,255,0.1); color: white; }
+        .btn-card-regular:hover { background: rgba(255,255,255,0.2); }
+        .btn-card-popular { background: #facc15; color: #0c4a6e; font-weight: 700; }
+        .btn-card-popular:hover { background: #fde047; transform: scale(1.05); }
+        
+        /* Discount Banner */
+        .discount-banner { margin-top: 3rem; background: linear-gradient(to right, rgba(250, 204, 21, 0.2), rgba(3, 105, 161, 0.2)); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(250, 204, 21, 0.3); text-align: center; }
+        .discount-banner .label { color: #fde047; font-weight: 600; }
+        .discount-banner .text { color: rgba(255,255,255,0.9); }
+        
+        /* Location */
+        .location-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(4px); border-radius: 1.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .map-container { aspect-ratio: 16/9; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        @media (min-width: 768px) { .map-container iframe { height: 24rem; } }
+        .location-info { padding: 1.5rem; }
+        @media (min-width: 768px) { .location-info { padding: 2rem; } }
+        .location-info p { color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 1rem; }
+        .location-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        .location-tag { background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; }
+        
+        /* Contact */
+        .contact-btn-group { display: flex; flex-direction: column; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
+        @media (min-width: 640px) { .contact-btn-group { flex-direction: row; max-width: 24rem; margin: 0 auto 3rem; } }
+        .btn-instagram { display: flex; align-items: center; justify-content: center; gap: 0.75rem; background: linear-gradient(to right, #a855f7, #ec4899); color: white; font-weight: 600; padding: 1rem 2rem; border-radius: 0.75rem; text-decoration: none; transition: all 0.3s; }
+        .btn-instagram:hover { transform: scale(1.05); }
+        .btn-instagram .icon { font-size: 1.5rem; }
+        .contact-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(4px); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); max-width: 32rem; margin: 0 auto; }
+        .contact-card .name { color: #fde047; font-weight: 600; }
+        .contact-card p { color: rgba(255,255,255,0.6); }
+        .contact-card a { color: #facc15; }
+        
+        /* Footer */
+        footer { padding: 2rem 1.5rem; background: #0c4a6e; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-container { max-width: 64rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        @media (min-width: 768px) { .footer-container { flex-direction: row; justify-content: space-between; } }
+        .footer-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.25rem; }
+        .footer-text { font-size: 0.875rem; color: rgba(255,255,255,0.4); }
+        .footer-links { display: flex; gap: 1rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: #facc15; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">🏄 Surf Shack</div>
+            <div class="nav-links">
+                <a href="#beneficios">Beneficios</a>
+                <a href="#membresia">Membresía</a>
+                <a href="#ubicacion">Ubicación</a>
+                <a href="#contacto" class="btn-primary">¡Únete!</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="bg-icon-1">🌊</div>
+        <div class="bg-icon-2">🏄‍♂️</div>
+        <div class="hero-content">
+            <h1>
+                <span class="text-white">Tu Club de</span><br>
+                <span class="gradient">Playa en Panamá</span>
+            </h1>
+            <p>
+                Piscina, comida, bebida y el mejor ambiente surf.<br>
+                <span class="highlight">Membresías y pasadías disponibles.</span>
+            </p>
+            <div class="btn-group">
+                <a href="#membresia" class="btn-hero-primary">Ver Membresías</a>
+                <a href="https://instagram.com/surfshackchame" target="_blank" class="btn-hero-secondary">📸 @surfshackchame</a>
+            </div>
+            <div class="hero-icons">
+                <div class="hero-icon-item">
+                    <div class="icon">🏖️</div>
+                    <div class="label">Playa Caracol</div>
+                </div>
+                <div class="hero-icon-item">
+                    <div class="icon">🏊</div>
+                    <div class="label">Piscina</div>
+                </div>
+                <div class="hero-icon-item">
+                    <div class="icon">🍔</div>
+                    <div class="label">Comida</div>
+                </div>
+                <div class="hero-icon-item">
+                    <div class="icon">🍸</div>
+                    <div class="label">Bar</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" style="background: linear-gradient(to bottom, #0c4a6e, #075985);">
+        <div class="section-container">
+            <h2 class="section-title">¿Qué incluye?</h2>
+            <p class="section-subtitle">Todo lo que necesitas para tu día perfecto en la playa</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon">🏊‍♂️</div>
+                    <h3>Piscina</h3>
+                    <p>Relájate en nuestra piscina con vista al mar</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🍔</div>
+                    <h3>Comida</h3>
+                    <p>Menú fresco y delicioso todo el día</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🍸</div>
+                    <h3>Bar</h3>
+                    <p>Bebidas tropicales y cervezas frías</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🅿️</div>
+                    <h3>Parqueo</h3>
+                    <p>Estacionamiento gratuito para miembros</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">📶</div>
+                    <h3>Wi-Fi</h3>
+                    <p>Internet de alta velocidad</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🏄‍♂️</div>
+                    <h3>Zona Surf</h3>
+                    <p>Área exclusiva para surfers</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🚿</div>
+                    <h3>Showers</h3>
+                    <p>Duchas para refrescarte después de la playa</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🛖</div>
+                    <h3>Contenedores</h3>
+                    <p>Espacios únicos con diseño moderno</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">💰</div>
+                    <h3>Descuento Hotel</h3>
+                    <p>Precio especial en estadías Playa Caracol</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membresia" style="background: linear-gradient(to bottom, #075985, #0c4a6e);">
+        <div class="section-container">
+            <h2 class="section-title">Membresías & Pasadías</h2>
+            <p class="section-subtitle">Elige la opción que mejor se adapte a ti</p>
+
+            <div class="pricing-grid">
+                <!-- Pasadía -->
+                <div class="pricing-card regular">
+                    <div class="pricing-label">🏖️ PASADÍA</div>
+                    <h3 class="pricing-title">Día Completo</h3>
+                    <p class="pricing-desc">Ideal para visitantes ocasionales</p>
+                    
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span> Acceso piscina</li>
+                        <li><span class="check">✓</span> Uso de instalaciones</li>
+                        <li><span class="check">✓</span> Showers & Wi-Fi</li>
+                        <li><span class="check">✓</span> Parqueo incluido</li>
+                    </ul>
+
+                    <div class="pricing-divider">
+                        <button class="btn-card btn-card-regular" onclick="window.open('https://wa.me/50766720516?text=Hola!%20Quiero%20información%20sobre%20pasadías%20en%20Surf%20Shack', '_blank')">
+                            Consultar Precio
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Membresía -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">POPULAR</div>
+                    <div class="pricing-label">⭐ MEMBRESÍA</div>
+                    <h3 class="pricing-title">Miembro VIP</h3>
+                    <p class="pricing-desc">Para los que aman la vida en la playa</p>
+                    
+                    <ul class="pricing-features">
+                        <li><span class="check">✓</span> Todo lo de pasadía</li>
+                        <li><span class="check">✓</span> Acceso prioritario</li>
+                        <li><span class="check">✓</span> Descuentos en comida y bebida</li>
+                        <li><span class="check">✓</span> Descuento especial en hotel Playa Caracol</li>
+                        <li><span class="check">✓</span> Eventos exclusivos</li>
+                    </ul>
+
+                    <div class="pricing-divider">
+                        <button class="btn-card btn-card-popular" onclick="window.open('https://wa.me/50766720516?text=Hola!%20Quiero%20información%20sobre%20membresías%20en%20Surf%20Shack', '_blank')">
+                            ¡Quiero Membresía!
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discount highlight -->
+            <div class="discount-banner">
+                <p>
+                    <span class="label">🏨 Bono especial:</span>
+                    <span class="text"> Los miembros obtienen descuento en estadías en Playa Caracol</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="ubicacion" style="background: linear-gradient(to bottom, #0c4a6e, #075985);">
+        <div class="section-container" style="max-width: 64rem;">
+            <h2 class="section-title">Ubicación</h2>
+            <p class="section-subtitle">Playa Caracol, Chame - Panamá</p>
+
+            <div class="location-card">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5!2d-79.8!3d8.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwNTQnMDAuMCJTKDc5wrA0OCcnMDAuMCJF!5e0!3m2!1ses!2spa!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="location-info">
+                    <p>A solo 1 hora de Ciudad de Panamá</p>
+                    <div class="location-tags">
+                        <span class="location-tag">🚗 1 hora de la ciudad</span>
+                        <span class="location-tag">🌊 Playa Caracol</span>
+                        <span class="location-tag">🏖️ Chame, Panamá</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" style="background: linear-gradient(to bottom, #075985, #0c4a6e);">
+        <div class="section-container" style="max-width: 48rem;">
+            <h2 class="section-title">¿Listo para unirte?</h2>
+            <p class="section-subtitle">Visítanos o contáctanos por Instagram</p>
+
+            <div class="contact-btn-group">
+                <a href="https://instagram.com/surfshackchame" target="_blank" class="btn-instagram">
+                    <span class="icon">📸</span>
+                    <span>@surfshackchame</span>
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <p class="name">Surf Shack</p>
+                <p style="margin-top: 0.5rem;">Playa Caracol, Chame, Panamá</p>
+                <p style="margin-top: 0.25rem;">
+                    <a href="https://instagram.com/surfshackchame" target="_blank">@surfshackchame</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">🏄 Surf Shack Chame</div>
+            <p class="footer-text">© 2026 Surf Shack. Club de Playa en Panamá.</p>
+            <div class="footer-links">
+                <a href="https://instagram.com/surfshackchame" target="_blank">📸 Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
